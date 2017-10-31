@@ -1,0 +1,104 @@
+﻿@model List<BestBuy.ViewModels.Smartphones.MobTabViewModel>
+
+<h1 style="font-size:50px; text-align:center; background-color:aqua ">@ViewData["prodType"].ToString()</h1>
+<br />
+
+<style>
+    .ib {
+        background: salmon;
+        border: solid red 1px;
+        display: inline;
+    }
+
+    .my_span {
+        display: block;
+        padding-left: 5px;
+        font-size: 19px;
+    }
+
+    .column {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+        -webkit-column-gap: 5px;
+        -moz-column-gap: 5px;
+        column-gap: 5px;
+        -webkit-column-width: 10px;
+        -moz-column-width: 10px;
+        column-width: 10px;
+        margin-bottom: 1em;
+    }
+
+    img {
+        float: left;
+        margin-left: 3px;
+        height: 250px;
+        width: 220px;
+        border: 2px solid black;
+    }
+
+    clear {
+        clear: left;
+    }
+
+    .bold_text {
+        font-size: 23px;
+        font: italic 1200;
+    }
+</style>
+<section>
+    @foreach (var SDev in Model)
+    {
+        <div style="border:2px solid black; border-spacing:2px 2px ; margin-bottom:1em; margin-left:2px; margin-right:3px">
+            <div class="clearfix">
+                <p style="font-size:15px; font-family:'Times New Roman', Times, serif; font-weight: bolder">
+                    @switch (SDev.ID)
+                    {
+                        case 1:
+                            <img src="" alt="" class=".ib" />;
+                            break;
+                        case 2:
+                            <img src="" alt="" class=".ib" />;
+                            break;
+                        default:
+                            break;
+                    }
+                    <div class="column" style="border:2px solid black; border-spacing:2px 2px;margin:1px 3px 1em 230px">
+
+                        <span class="my_span">Name:<i class="bold_text">@SDev.Name</i> </span>
+
+                        @if (SDev.Model != null)
+                        {<span class="my_span">Model:<i class="bold_text">@SDev.Model</i> </span>}
+
+                        @if (SDev.Color != null)
+                        {<span class="my_span">Color:<i class="bold_text">@SDev.Color</i> </span>}
+
+                        @if (SDev.Price != null)
+                        {<span class="my_span">Price:<i class="bold_text">@SDev.Price AMD</i> </span>}
+
+                        @if (SDev.SIZE != null)
+                        {<span class="my_span">SIZE:<i class="bold_text">@SDev.SIZE "</i> </span>}
+
+                        @if (SDev.SIM != null)
+                        {<span class="my_span">SIM:<i class="bold_text">@SDev.SIM</i> </span>}
+
+                        @if (SDev.MEMORY != null)
+                        {<span class="my_span">MEMORY:<i class="bold_text">@SDev.MEMORY GB</i> </span>}
+
+                        @if (SDev.CAMERA != null)
+                        {<span class="my_span">CAMERA:<i class="bold_text">@SDev.CAMERA MP</i> </span>}
+
+                        @if (SDev.CPU != null)
+                        {<span class="my_span">CPU:<i class="bold_text">@SDev.CPU</i> </span>}
+
+                        @if (SDev.BATTERY != null)
+                        {<span class="my_span">BATTERY:<i class="bold_text">@SDev.BATTERY</i> </span>}
+
+                    </div>
+                    <br />
+                </p>
+                <br />
+            </div>
+        </div>
+    }
+</section>

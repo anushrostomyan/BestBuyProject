@@ -1,0 +1,15 @@
+﻿@model BestBuy.ViewModels.Test.ImageUploadViewModel
+
+@using (Html.BeginForm("FileUpload", "ImageUpload", FormMethod.Post,
+                                                               new { enctype = "multipart/form-data" }))
+{
+    <label for="file">Product type:</label>
+    
+    
+    
+    <input type="file" asp-for="@Model.Image" id="file" style="width: 100%;" />
+    <input type="submit" value="Upload" class="submit" />
+}
+
+
+

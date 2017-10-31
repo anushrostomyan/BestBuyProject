@@ -1,0 +1,61 @@
+﻿@model BestBuy.ViewModels.Auth.LoginViewModel
+    <h1>
+        <b style="font-size:25px;">Please Login To Check Your Bonuses!</b>
+    </h1>
+<section class="loginSection">
+    <form method="post" asp-controller="Auth" asp-action="Login">
+        <section class="boxWrap">
+            <div class="box">
+                <div class="boxHeader">
+                    <div class="boxHeaderLeft">
+                        <h3>
+                            <i class="fa fa-user"></i>
+                            <span >Բարի Գալուստ <input  type="button" value="Back" onclick="history.back()" style=" right: 0"></span>                                
+                          
+                        </h3>
+                    </div>
+                </div>
+                <div class="boxBody">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="username">Մուտքանուն</label>
+                                <input class="form-control" asp-for="@Model.UserName" type="text"  id="username" value="" />
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "help-inline", @style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Գաղտնաբառ</label>
+                                <input class="form-control" asp-for="@Model.Password" type="password"  id="password" value="" />
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "help-inline", @style = "color:red" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="alert hidden color-error-bg">
+                                <a href="#" type="close" class="pull-right closeIcon" data-dismiss="alert" aria-hidden="true"><i class="fa fa-close"></i></a>
+                                @*<span asp-validation-for="@Model.UserName"></span>
+                                <span asp-validation-for="@Model.Password"></span>
+                                <span asp-validation-for="@Model.ModelStateNotValid"></span>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxFooter">
+                    <button type="submit" class="btn btn-flat color-2-bg color-2-hover-bg color-text-white">Մուտք</button>
+                </div>
+            </div>
+        </section>
+    </form>
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".alert").find("span").each(function () {
+            var self = $(this);
+            if (self.html() != "" && typeof self.html() != "undefined") {
+                $(".alert").removeClass("hidden");
+            }
+        })
+    });
+</script>

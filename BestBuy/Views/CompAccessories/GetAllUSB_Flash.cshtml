@@ -1,0 +1,114 @@
+﻿@model List<BestBuy.ViewModels.Accessories.USBFlashViewModel>
+
+<h1 style="font-size:50px; font-family:'Baskerville Old Face'; text-align:center; background-color:aqua ">USB Flash</h1>
+<br />
+
+
+<h1 style="font-size:50px; text-align:center; background-color:aqua "></h1>
+<br />
+
+
+<style>
+    .ib {
+        background: salmon;
+        border: solid red 1px;
+        display: inline;
+    }
+
+    .my_span {
+        display: block;
+        padding-left: 5px;
+        font-size: 19px;
+    }
+
+    .column {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+        -webkit-column-gap: 5px;
+        -moz-column-gap: 5px;
+        column-gap: 5px;
+        -webkit-column-width: 10px;
+        -moz-column-width: 10px;
+        column-width: 10px;
+        margin-bottom: 1em;
+    }
+
+
+    img {
+        float: left;
+        margin-left: 3px;
+        height: 250px;
+        width: 220px;
+        border: 2px solid black;
+    }
+
+
+
+    clear {
+        clear: left;
+    }
+
+    .bold_text {
+        font-size: 23px;
+        font: italic 1200;
+    }
+</style>
+<section>
+    @foreach (var usbflash in Model)
+    {
+        <div style="border:2px solid black; border-spacing:2px 2px ; margin-bottom:1em; margin-left:2px; margin-right:3px">
+            <div class="clearfix">
+                <p style="font-size:15px; font-family:'Times New Roman', Times, serif; font-weight: bolder">
+                    @if (usbflash.ImageAsBase64 != null)
+                    {
+                        <img src="data:image/png;base64, @usbflash.ImageAsBase64" alt="Red dot" />;
+                    }
+                    else
+                    {
+                        <img src="~/img/users/user-1.jpg" alt="" class=".ib" />;
+
+                    }
+                    <div class="column" style="border:2px solid black; border-spacing:2px 2px;margin:1px 3px 1em 230px">
+
+                        <span class="my_span">Product name: <i class="bold_text">@usbflash.Name</i> </span>
+                    </div>
+                    <div class="my_span" style="border:2px solid black; border-spacing:2px 2px;margin:1px 3px 1em 230px">
+
+                        <span class="my_span">Product Brand: <i class="bold_text">@usbflash.Brand</i> </span>
+                    </div>
+                    <div class="my_span" style="border:2px solid black; border-spacing:2px 2px;margin:1px 3px 1em 230px">
+
+                        <span class="my_span">MemoryCapacity: <i class="bold_text">@usbflash.MemoryCapacity</i> </span>
+                    </div>
+                    <div class="my_span" style="border:2px solid black; border-spacing:2px 2px;margin:1px 3px 1em 230px">
+
+                        <span class="my_span">Color: <i class="bold_text">@usbflash.Color</i> </span>
+                    </div>
+                    <div class="my_span" style="border:2px solid black; border-spacing:2px 2px;margin:1px 3px 1em 230px">
+
+                        <span class="my_span">Material: <i class="bold_text">@usbflash.Material</i> </span>
+                    </div>
+                    <div class="my_span" style="border:2px solid black; border-spacing:2px 2px;margin:1px 3px 1em 230px">
+
+                        <span class="my_span">USBStandart: <i class="bold_text">@usbflash.USBStandart</i> </span>
+                    </div>
+                    <div class="my_span" style="border:2px solid black; border-spacing:2px 2px;margin:1px 3px 1em 230px">
+
+                        <span class="my_span">DataTransferRate: <i class="bold_text">@usbflash.DataTransferRate</i> </span>
+                    </div>
+                    <div class="my_span" style="border:2px solid black; border-spacing:2px 2px;margin:1px 3px 1em 230px">
+
+                        <span class="my_span">ProductionDate: <i class="bold_text">@usbflash.ProductionDate</i> </span>
+                    </div>
+                    <div class="my_span" style="border:2px solid black; border-spacing:2px 2px;margin:1px 3px 1em 230px">
+
+                        <span class="my_span">Price: <i class="bold_text">@usbflash.Price</i> </span>
+                    </div>
+                    <br />
+                </p>
+                <br />
+            </div>
+        </div>
+    }
+</section>

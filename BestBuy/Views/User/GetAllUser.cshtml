@@ -1,0 +1,82 @@
+﻿@model List<BestBuy.ViewModels.User.GetUserViewModel>
+
+
+<h1> Table Of Users</h1>
+
+    <style>
+        table {
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+
+        table#t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        table#t01 tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        table#t01 th {
+            background-color: black;
+            color: white;
+        }
+
+        /*.header .sign:after {
+            content: "+";
+            display: inline-block;
+        }
+
+        .header.expand .sign:after {
+            content: "-";
+        }*/
+
+    </style>
+    <table style="width:100%; border: 1px solid black">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Birthdate</th>
+            <th>Tell. Number</th>
+            <th>Sex</th>
+            <th>Status</th>
+        </tr>
+
+        @foreach (var user in Model)
+        {
+            <tr class="headerCollapse">
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@user.BirthDate</td>
+                <td>@user.TellNumber</td>
+                <td>@user.Sex</td>
+                <td>@user.Status</td>
+            </tr>
+        }
+
+
+    </table>
+<div>
+
+</div>
+
+@*<script>
+    $('.headerCollapse').click(function () {
+        $(this).nextUntil('tr.headerCollapse').slideToggle(1000);
+    });
+</script>*@
+
+

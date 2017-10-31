@@ -1,0 +1,63 @@
+﻿@model List<BestBuy.ViewModels.HomeAppliances.VacuumCleanerViewModel>
+
+
+
+<h1 style="font-size:50px; text-align:center ">)</h1>
+<br />
+
+
+<style>
+    .ib {
+        background: salmon;
+        border: solid red 1px;
+        display: inline;
+    }
+
+    span {
+        display: block;
+        padding-left: 50px;
+    }
+
+
+
+    img {
+        float: left;
+        margin: 0 0 10px 10px;
+        width: 200px;
+        height: 200px;
+    }
+
+    clear {
+        clear: left;
+    }
+</style>
+<section>
+    @foreach (var vacuumCleaner in Model)
+    {
+        <div>
+            <p style="font-size:15px; font-family:'Times New Roman', Times, serif; font-weight: bolder">
+
+                @if (vacuumCleaner.Company != null)
+                {<span>Company : <i style="font:italic; font:bolder">@vacuumCleaner.Company</i> </span>}
+
+
+                @if (vacuumCleaner.Name != null)
+                {<span>Name : <i style="font:italic; font:bolder">@vacuumCleaner.Name</i> </span>}
+
+                @if (vacuumCleaner.Price != null)
+                {<span>Price : <i style="font:italic; font:bolder">  @vacuumCleaner AMD </i></span>}
+
+                @if (vacuumCleaner.DustBagCapacity != null)
+                {<span>DustBagCapacity : <i style="font:italic; font:bolder">  @vacuumCleaner.DustBagCapacity L</i> </span> }
+
+                @if (vacuumCleaner.MaximumPower != null)
+                {<span>MaximumPower : <i style="font:italic; font:bolder"> @vacuumCleaner.MaximumPower W</i> </span>}
+
+                @if (vacuumCleaner.SuctionPower != null)
+                {<span>SuctionPower : <i style="font:italic; font:bolder"> @vacuumCleaner.SuctionPower W</i> </span> }
+
+            </p>
+            <br />
+        </div>
+    }
+</section>

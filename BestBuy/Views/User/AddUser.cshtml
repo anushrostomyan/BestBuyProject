@@ -1,0 +1,45 @@
+﻿@model BestBuy.ViewModels.User.AddUserViewModel
+    
+<!DOCTYPE html>
+<h1>
+    <b style="font-size:25px;">Adding User</b>
+</h1>
+
+<html>
+
+<body>
+    <form method="post" action="/User/AddUser">
+        <label><b>First Name</b></label>
+        <input asp-for="@Model.FirstName" type="text" id="firstname" value="" />
+        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "help-inline", @style = "color:red" })
+        <br />
+
+        <label><b>Last Name</b></label>
+        <input asp-for="@Model.LastName" type="text" id="lastname" value="" />
+        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "help-inline", @style = "color:red" })
+        <br />
+
+        <label><b>Email(Valid)</b></label>:
+        <input asp-for="@Model.Email" type="text" id="email" value="" />
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "help-inline", @style = "color:red" })
+        <br />
+
+        <label><b>User Name</b></label>
+        <input asp-for="@Model.UserName" type="text" id="username" value="" />
+        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "help-inline", @style = "color:red" })
+        <br />
+
+        <label><b>Password</b></label>
+        <input asp-for="@Model.Password" type="password" id="password" value="" />
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "help-inline", @style = "color:red" })
+        <br />        
+        <select asp-for="@Model.Sex">
+            <option value="1" selected>Male</option>
+            <option value="0">Female</option>
+        </select>
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+
+</html>
+

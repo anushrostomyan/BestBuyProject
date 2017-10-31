@@ -1,0 +1,143 @@
+﻿@model List<BestBuy.ViewModels.Computers.GetPCbyTypeViewModel>
+
+@*@ViewData["Title"] = @ViewData["prodType"].ToString();*@
+
+
+<h1 style="font-size:50px; text-align:center; background-color:aqua ">@ViewData["prodType"].ToString()</h1>
+<br />
+
+
+<style>
+    .ib {
+        background: salmon;
+        border: solid red 1px;
+        display: inline;
+    }
+
+    .my_span {
+        display: block;
+        padding-left: 5px;
+        font-size:19px;
+    }
+
+    .column {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+        -webkit-column-gap: 5px;
+        -moz-column-gap: 5px;
+        column-gap: 5px;
+        -webkit-column-width: 10px;
+        -moz-column-width: 10px;
+        column-width: 10px;
+        margin-bottom: 1em;
+    }
+
+
+    img {
+        float: left;
+        margin-left: 3px;
+        height: 250px;
+        width: 220px;
+        border: 2px solid black;
+    }
+
+    
+
+    clear {
+        clear: left;
+    }
+
+    .bold_text{
+        font-size:23px;
+        font: italic 1200;       
+
+    }
+
+</style>
+<section>
+    @foreach (var pc in Model)
+    {
+        <div style="border:2px solid black; border-spacing:2px 2px ; margin-bottom:1em; margin-left:2px; margin-right:3px">
+            <div class="clearfix">
+                <p style="font-size:15px; font-family:'Times New Roman', Times, serif; font-weight: bolder">
+                    @switch (pc.ID)
+                    {
+                        case 1:
+                            <img src="~/img/users/user-1.jpg" alt="" class=".ib" />;
+                            break;
+                        case 2:
+                            <img src="~/img/users/user-2.jpg" alt="" class=".ib" />;
+                            break;
+                        case 3:
+                            <img src="~/img/users/user-3.jpg" alt="" class=".ib" />;
+                            break;
+                        case 4:
+                            <img src="~/img/users/user-4.jpg" alt="" class=".ib" />;
+                            break;
+                        case 5:
+                            <img src="~/img/users/user-5.jpg" alt="" class=".ib" />;
+                            break;
+                        case 6:
+                            <img src="~/img/users/user-6.jpg" alt="" class=".ib" />;
+                            break;
+                        case 7:
+                            <img src="~/img/users/user-7.jpg" alt="" class=".ib" />;
+                            break;
+                        default:
+                            break;
+                    }
+                    <div class="column" style="border:2px solid black; border-spacing:2px 2px;margin:1px 3px 1em 230px">
+
+                        <span class="my_span">Product name: <i  class="bold_text">@pc.ProductName</i> </span>
+
+                        @if (pc.Price != null)
+                        {<span class="my_span">Price: <i class="bold_text">  @pc.Price AMD </i></span>}
+
+                        @if (pc.ScreenSize != null)
+                        {<span class="my_span">Screen size: <i class="bold_text">  @pc.ScreenSize "</i> </span> }
+
+                        @if (pc.ScreenResolution != null)
+                        {<span class="my_span">Screen resolution: <i class="bold_text"> @pc.ScreenResolution pixels</i> </span>}
+
+                        @if (pc.TouchScreen != null)
+                        {<span class="my_span">Touch screen: <i class="bold_text"> @pc.TouchScreen </i> </span> }
+
+                        @if (pc.Color != null)
+                        {<span class="my_span">Color: <i class="bold_text"> @pc.Color </i> </span> }
+
+                        @if (pc.CPU != null)
+                        {<span class="my_span">CPU: <i class="bold_text"> @pc.CPU</i> </span> }
+                                                        
+                        @if (pc.RAM != null)            
+                        {<span class="my_span">RAM: <i class="bold_text"> @pc.RAM GB </i> </span> }
+                                                        
+                        @if (pc.HDD != null)            
+                        {<span class="my_span">HDD: <i class="bold_text"> @pc.HDD GB </i> </span>}
+                                                        
+                        @if (pc.SSD != null)            
+                        {<span class="my_span">SSD: <i class="bold_text"> @pc.SSD GB </i> </span> }
+
+                        @if (pc.OS != null)
+                        {<span class="my_span">OS: <i class="bold_text"> @pc.OS </i> </span> }
+
+                        @if (pc.Weight != null)
+                        {<span class="my_span">Weight: <i class="bold_text"> @pc.Weight kg </i> </span> }
+
+                        @if (pc.GraphicsCard != null)
+                        {<span class="my_span">Graphics card: <i class="bold_text"> @pc.GraphicsCard </i> </span> }
+
+                        @if (pc.WebCam != null)
+                        {<span class="my_span">WebCam: <i class="bold_text"> @pc.WebCam </i> </span> }
+
+                        <span class="my_span">Availability: <i class="bold_text"> @pc.Availability </i> </span>
+
+
+                    </div>
+                    <br />
+                </p>
+                <br />
+            </div>
+        </div>
+    }
+</section>

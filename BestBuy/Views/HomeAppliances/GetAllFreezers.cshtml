@@ -1,0 +1,66 @@
+﻿@model List<BestBuy.ViewModels.HomeAppliances.FreezerViewModel>
+
+
+
+    <h1 style="font-size:50px; text-align:center ">)</h1>
+    <br />
+
+
+    <style>
+        .ib {
+            background: salmon;
+            border: solid red 1px;
+            display: inline;
+        }
+
+        span {
+            display: block;
+            padding-left: 50px;
+        }
+
+
+
+        img {
+            float: left;
+            margin: 0 0 10px 10px;
+            width: 200px;
+            height: 200px;
+        }
+
+        clear {
+            clear: left;
+        }
+    </style>
+    <section>
+        @foreach (var freezer in Model)
+        {
+            <div>
+                    <p style="font-size:15px; font-family:'Times New Roman', Times, serif; font-weight: bolder">
+                        
+                        @if (freezer.Company != null)
+                        {<span>Company : <i style="font:italic; font:bolder">@freezer.Company</i> </span>}
+
+
+                        @if (freezer.Name != null)
+                        {<span>Name : <i style="font:italic; font:bolder">@freezer.Name</i> </span>}
+
+                        @if (freezer.Price != null)
+                        {<span>Price : <i style="font:italic; font:bolder">  @freezer AMD </i></span>}
+
+                        @if (freezer.TotalCapacity != null)
+                        {<span>TotalCapacity : <i style="font:italic; font:bolder">  @freezer.TotalCapacity L</i> </span> }
+
+                        @if (freezer.NumberOfDoors != null)
+                        {<span>NumberOfDoors : <i style="font:italic; font:bolder"> @freezer.NumberOfDoors </i> </span>}
+
+                        @if (freezer.Colour != null)
+                        {<span>Colour : <i style="font:italic; font:bolder"> @freezer.Colour </i> </span> }
+
+                        @if (freezer.Dimensions != null)
+                        {<span>Dimensions : <i style="font:italic; font:bolder"> @freezer.Dimensions cm</i> </span> }
+
+                    </p>
+                    <br />
+                </div>
+        }
+    </section>

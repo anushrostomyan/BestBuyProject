@@ -1,0 +1,791 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" href="~/css/font-awesome.min.css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css" />
+    <!-- daterangepicker -->
+    <link rel="stylesheet" type="text/css" href="~/css/daterangepicker.min.css" />
+    <!-- nouislider -->
+    <link rel="stylesheet" type="text/css" href="~/css/nouislider.min.css" />
+    <!-- plupload -->
+    <link rel="stylesheet" type="text/css" href="~/css/plupload.min.css" />
+    <!-- selectize -->
+    <link rel="stylesheet" type="text/css" href="~/css/selectize.min.css" />
+    <!-- cropper -->
+    <link rel="stylesheet" type="text/css" href="~/css/cropper.min.css" />
+    <!-- main styles -->
+    <link rel="stylesheet" type="text/css" href="~/css/main.min.css" />
+
+    <script src="~/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="~/js/vendor/jquery-3.1.1.min.js"></script>
+    <script src="~/js/vendor/jquery-ui-1.11.4.min.js"></script>
+    <!-- moment js -->
+    <script src="~/js/vendor/moment-with-locales.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="~/js/vendor/bootstrap.js"></script>
+    <!-- MTDropBox -->
+    <script src="~/js/mtdropbox.js"></script>
+    <!-- selectize js -->
+    <script src="~/js/vendor/selectize/selectize.min.js"></script>
+    <!-- daterangepicker js -->
+    <script src="~/js/vendor/daterangepicker.js"></script>
+    <!-- tinymce js -->
+    <script src="~/js/vendor/tinymce/tinymce.min.js"></script>
+    <!-- plupload js -->
+    <script src="~/js/vendor/plupload/plupload.full.min.js"></script>
+    <script src="~/js/vendor/plupload/jquery.plupload.queue/jquery.plupload.queue.min.js"></script>
+    <!-- nouislider js -->
+    <script src="~/js/vendor/nouislider/nouislider.min.js"></script>
+    <script src="~/js/vendor/wNumb.js"></script>
+    <!-- google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+@*<body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">BestBuy</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">About Us</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Branches</a></li>
+                        <li><a asp-area="" asp-controller="Auth" asp-action="Login">Bonus</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2017 - BestBuy</p>
+            </footer>
+        </div>
+
+        <environment names="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+        </environment>
+        <environment names="Staging,Production">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+            </script>
+            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+            </script>
+            <script src="~/js/site.min.js" asp-append-version="true"></script>
+        </environment>
+
+        @RenderSection("Scripts", required: false)
+    </body>*@
+
+<body class="page-Dashboard mtSidebarOpen">
+    <section id="wrap">
+        <header class="color-1-bg">
+            <section class="headerLeft">
+                <div class="mtadminLogo">
+                    <a href="@Url.Action("Index","Home")">
+                        <span>Best Buy</span>
+                    </a>
+                </div>
+            </section>
+            <section class="headerRight">
+                <div class="headerRight-Right">
+                    @{
+                        string firstName = (ViewData["FirstName"] ?? string.Empty) as string;
+                        if (!string.IsNullOrEmpty(firstName))
+                        {
+                            @Html.Raw("<span style=\"color: white\">Hi " + firstName + "</span><a style=\"color: white\" href=\"@Url.Action(\"Logout\", \"Auth\")\"> Sign Out </a>");
+                        }
+                        else
+                        {
+                            @Html.Raw("<a style=\"color: white\" href=\"Auth/Login\"> Login </a>");
+                        }
+                    }
+                    
+                </div>
+            </section>
+        </header>
+        <section class="mtSidebar">
+            <div class="sidebar-menu">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default panel-bg">
+                        <div class="panel panel-default panel-bg">
+                            <div class="panel-heading" role="tab" id="heading-1">
+                                <h4 class="panel-title sidebar-title">
+                                    <a class="collapsed" href="#collapse-1" aria-controls="collapse-1" data-parent="#accordion" role="button" data-toggle="collapse" aria-expanded="false">
+                                        <div class="panel-title-left">
+                                            <span>Home Appliances</span>
+                                        </div>
+                                        <div class="panel-title-right"></div>
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse-1" aria-labelledby="heading-1" class="panel-collapse collapse" role="tabpanel">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li>
+                                            <a href="@Url.Action("GetAllFreezers", "HomeAppliances")">
+                                                <span>Freezers</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("GetAllAirConditioners", "HomeAppliances")">
+                                                <span>Air Conditioner</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("GetAllVacuumCleaners", "HomeAppliances")">
+                                                <span>Vacuum Cleaner</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                       
+
+
+
+                            <div class="panel panel-default panel-bg">
+                                <div class="panel-heading" role="tab" id="heading-3">
+                                    <h4 class="panel-title sidebar-title">
+                                        <a class="collapsed" href="#collapse-3" aria-controls="collapse-3" data-parent="#accordion" role="button" data-toggle="collapse" aria-expanded="true">
+                                            <div class="panel-title-left">
+                                                <span>Kitchen Appliances</span>
+                                            </div>
+                                            <div class="panel-title-right"></div>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse-3" aria-labelledby="heading-3" class="panel-collapse collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        <ul>
+                                            <li>
+                                                <a href="@Url.Action("GetAllFoodProcessors", "KitchenAppliance")">
+                                                    <span>Food Processors</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("GetAllCoffeeMakers", "KitchenAppliance")">
+                                                    <span>Coffee Maker</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("GetAllKettles", "KitchenAppliance")">
+                                                    <span>Kettle</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("GetAllJuicers", "KitchenAppliance")">
+                                                    <span>Juicer</span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                <a href="@Url.Action("GetAllMicrowaves", "KitchenAppliance")">
+                                                    <span>Microwave</span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="@Url.Action("GetAllMixers", "KitchenAppliance")">
+                                                    <span>Mixer</span>
+                                                </a>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default panel-bg">
+                                <div class="panel-heading" role="tab" id="heading-4">
+                                    <h4 class="panel-title sidebar-title">
+                                        <a class="collapsed" href="#collapse-4" aria-controls="collapse-4" data-parent="#accordion" role="button" data-toggle="collapse" aria-expanded="true">
+                                            <div class="panel-title-left">
+                                                @*<i class="fa fa-video-camera" aria-hidden="true"></i>*@
+                                               
+                                                    <span>Audio/Video</span>
+                                              </div>
+                                            <div class="panel-title-right"></div>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse-4" aria-labelledby="heading-4" class="panel-collapse collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        <ul>
+                                            <li>
+                                                  <a href="@Url.Action("GetAllAudioDevices", "Audio")">
+                                                        <span>Audio Devices</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <a href="@Url.Action("GetAllVideoDevices", "Video")">
+                                                        <span>Video Devices</span>
+                                                    </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default panel-bg">
+                                <div class="panel-heading" role="tab" id="heading-5">
+                                    <h4 class="panel-title sidebar-title">
+                                        <a class="collapsed" href="#collapse-5" aria-controls="collapse-5" data-parent="#accordion" role="button" data-toggle="collapse" aria-expanded="true">
+                                            <div class="panel-title-left">
+                                                @*<i class="fa fa-laptop" aria-hidden="true"></i>*@
+                                                @*@Url.Action("Index", "Computer")*@
+                                                <span > Computers </span>
+                                            </div>                                            
+                                            <div class="panel-title-right"></div>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse-5" aria-labelledby="heading-5" class="panel-collapse collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        <ul>
+                                            <li>
+                                                <a href="@Url.Action("GetPCbyType","Computer",new { typeID = 1})">
+                                                    <span>Desktop</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("GetPCbyType","Computer",new { typeID = 2})">
+                                                    <span>Laptop</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("GetPCbyType","Computer",new { typeID = 3})">
+                                                    <span>All In One</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default panel-bg">
+                                <div class="panel-heading" role="tab" id="heading-6">
+                                    <h4 class="panel-title sidebar-title">
+                                        <a class="collapsed" href="#collapse-6" aria-controls="collapse-6" data-parent="#accordion" role="button" data-toggle="collapse" aria-expanded="true">
+                                            <div class="panel-title-left">
+                                                @*<i class="fa fa-keyboard-o"></i>*@
+                                                <span>Accessories</span>
+                                            </div>
+                                            <div class="panel-title-right"></div>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse-6" aria-labelledby="heading-6" class="panel-collapse collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        <ul>
+                                            <li>
+                                                <a href="@Url.Action("GetAllMouses","CompAccessories")">
+                                                    <span>Computer mouses</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("GetAllKeyboards","CompAccessories")">
+                                                    <span>Computer Keybords</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("GetAllWebCAmeras","CompAccessories")">
+                                                    <span>Web Cameras</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("GetAllLaptopTabletCase","CompAccessories")">
+                                                    <span>Laptop and Tablet Cases</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("GetAllUSB_Flash","CompAccessories")">
+                                                    <span>USB Flash</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default panel-bg">
+                                <div class="panel-heading" role="tab" id="heading-7">
+                                    <h4 class="panel-title sidebar-title">
+                                        <a class="collapsed" href="#collapse-7" aria-controls="collapse-7" data-parent="#accordion" role="button" data-toggle="collapse" aria-expanded="true">
+                                            <div class="panel-title-left">
+                                                @*<i class="fa fa-tablet" aria-hidden="true"></i>*@
+                                                <span>Smart Devices</span>
+                                            </div>
+                                            <div class="panel-title-right"></div>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse-7" aria-labelledby="heading-7" class="panel-collapse collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        <ul>
+                                            <li>
+                                                <a href="@Url.Action("GetAllSmartDevices", "SmartDevices",new { typeID = 1})">
+                                                    <span>Mobile Phones</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("GetAllSmartDevices", "SmartDevices",new { typeID = 2})">
+                                                    <span>Tablets</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default panel-bg">
+                                <div class="panel-heading" role="tab" id="heading-8">
+                                    <h4 class="panel-title sidebar-title">
+                                        <a class="collapsed" href="#collapse-8" aria-controls="collapse-8" data-parent="#accordion" role="button" data-toggle="collapse" aria-expanded="true">
+                                            <div class="panel-title-left">
+                                                <span>Video Games/Consoles</span>
+                                            </div>
+                                            <div class="panel-title-right"></div>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse-8" aria-labelledby="heading-8" class="panel-collapse collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        <ul>
+                                            <li>
+                                                <a href="@Url.Action("GetAllConsoles","Gaming")">
+                                                    <span>Gaming Consoles</span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="@Url.Action("GetAllVideoGames","Gaming")">
+                                                    <span>Video Games</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default panel-bg drops-up" role="tabpanel">
+                            <div class="panel-heading" role="tab">
+                                <h4 class="panel-title">
+                                    <a href="@Url.Action("Index","Bonus")">
+                                        <div class="panel-title-left">
+                                            <i class="fa fa-usd" aria-hidden="true"></i>
+                                            <span>Bonus System</span>
+                                        </div>
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default panel-bg">
+                            <div class="panel-heading" role="tab" id="heading-10">
+                                <h4 class="panel-title sidebar-title">
+                                    @*<a class="collapsed" href="#collapse-10" data-parent="#accordion" role="button" data-toggle="collapse" aria-expanded="true">*@
+                                    <a href="@Url.Action("GetBranches","Branch")">
+                                        <div class="panel-title-left">
+                                            <i class="material-icons" style="font-size:26px">store_mall_directory</i>
+                                            <span>Our Branches</span>
+                                        </div>
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="panel panel-default panel-bg">
+                            <div class="panel-heading" role="tab" id="heading-10">
+                                <h4 class="panel-title sidebar-title">
+                                    <a class="collapsed" href="#collapse-10" data-parent="#accordion" role="button" data-toggle="collapse" aria-expanded="true">
+                                        <div class="panel-title-left">
+                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                            <span>ABOUT US</span>
+                                        </div>
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+        <section class="contentWrapper">
+
+            @RenderBody()
+
+        </section>
+        <footer class="color-1-bg invisibile">
+            <div class="footerIn">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="clearfix">
+                                <div class="footerLeft">
+                                    &copy; @DateTime.Now.Year  BestBuy Team
+                                </div>
+                                <div class="footerRight"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Main js file -->
+        <script src="js/main.js"></script>
+        <script src="js/home.js"></script>
+    </section>
+    <div class="modal fade" id="productEditModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Item</h4>
+                </div>
+                <div class="modal-body">
+                    <section class="boxWrap">
+                        <div class="box">
+                            <div class="boxBody">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#productEdit-en" data-toggle="tab">En</a></li>
+                                    <li><a href="#productEdit-image" data-toggle="tab">Image</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="productEdit-en">
+                                        <div class="form-group">
+                                            <label>Translation</label>
+                                            <div class="form-group-in">
+                                                <div class="mtCheckbox mtCheckbox-sm pull-left">
+                                                    <label>
+                                                        <input type="checkbox" checked />
+                                                        <span>En</span>
+                                                    </label>
+                                                </div>
+                                                <div class="mtCheckbox mtCheckbox-sm pull-left">
+                                                    <label>
+                                                        <input type="checkbox" />
+                                                        <span>Ru</span>
+                                                    </label>
+                                                </div>
+                                                <div class="mtCheckbox mtCheckbox-sm pull-left">
+                                                    <label>
+                                                        <input type="checkbox" />
+                                                        <span>Fr</span>
+                                                    </label>
+                                                </div>
+                                                <div class="mtCheckbox mtCheckbox-sm pull-left">
+                                                    <label>
+                                                        <input type="checkbox" />
+                                                        <span>De</span>
+                                                    </label>
+                                                </div>
+                                                <div class="mtCheckbox mtCheckbox-sm pull-left">
+                                                    <label>
+                                                        <input type="checkbox" />
+                                                        <span>It</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="productEdit-parentId">Parent ID</label>
+                                                    <select id="productEdit-parentId" class="selectize">
+                                                        <option value="0" selected>No Parent</option>
+                                                        <option value="1">Parent 1</option>
+                                                        <option value="2">Parent 2</option>
+                                                        <option value="3">Parent 3</option>
+                                                        <option value="4">Parent 4</option>
+                                                        <option value="5">Parent 5</option>
+                                                        <option value="6">Parent 6</option>
+                                                        <option value="7">Parent 7</option>
+                                                        <option value="8">Parent 8</option>
+                                                        <option value="9">Parent 9</option>
+                                                        <option value="10">Parent 10</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="productEdit-name">Name</label>
+                                                    <input id="productEdit-name" value="Product Name" type="text" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productEdit-description">Description</label>
+                                            <textarea id="productEdit-description" cols="" rows="4" class="form-control">Product is an informative, entertaining portal about Lorem Ipsum.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productEdit-url">URL</label>
+                                            <input id="productEdit-url" value="http://product.com" type="text" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="productEdit-tags">Tags (separated with commas)</label>
+                                            <input type="text" id="productEdit-tags" value="tag1,tag2,Lenin,Stalin" class="selectize-tags" />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-group-in">
+                                                <div class="mtCheckbox">
+                                                    <label>
+                                                        <input type="checkbox" checked />
+                                                        <span>Visible</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="productEdit-image">
+                                        <div class="form-group">
+                                            <table class="table table-bordered table-valignM">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th colspan="2">Path</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td><a href="#">1.jpg</a></td>
+                                                        <td><button class="btn btn-danger btn-flat" title="Delete"><i class="fa fa-trash-o"></i></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="productEdit-imageUploader">
+                                            <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success btn-flat">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Example</h4>
+                </div>
+                <div class="modal-body">
+                    <section class="boxWrap">
+                        <div class="box">
+                            <div class="boxBody">
+                                <div class="form-group">
+                                    <button data-target="#exampleModalCollapse" aria-controls="exampleModalCollapse" class="btn btn-default btn-flat" type="button" data-toggle="collapse" aria-expanded="false">
+                                        Collapse
+                                    </button>
+                                </div>
+                                <div class="collapse" id="exampleModalCollapse">
+                                    <div class="form-group">
+                                        <div id="exampleModal-imageUploader">
+                                            <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success btn-flat">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalTwo" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Item</h4>
+                </div>
+                <div class="modal-body">
+                    <section class="boxWrap">
+                        <div class="box">
+                            <div class="boxBody">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#exampleModalTwo-en" data-toggle="tab">En</a></li>
+                                    <li><a href="#exampleModalTwo-image" data-toggle="tab">Image</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="exampleModalTwo-en">
+                                        <div class="modalImgListWrap">
+                                            <h2>Cover Image List</h2>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-4">
+                                                    <div class="modalImg">
+                                                        <img src="img/users/user-7.jpg" alt="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-md-8">
+                                                    <div class="modalImgTools">
+                                                        <div class="modalImgDesc">
+                                                            <ul>
+                                                                <li>Title: Garni</li>
+                                                                <li>Dimensions: 1200 x 1200</li>
+                                                                <li>Thumbnail: 300 x 300</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="modalImgBtns">
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-info btn-flat" title="Create Thumbnail"><i class="fa fa-crop"></i></button>
+                                                                <button class="btn btn-info btn-flat" title="Manual Resize"><i class="fa fa-arrows-h"></i></button>
+                                                                <button class="btn btn-info btn-flat" title="Edit Title"><i class="fa fa-edit"></i></button>
+                                                                <button class="btn btn-info btn-flat" title="Remove"><i class="fa fa-trash-o"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="exampleModalTwo-image">
+                                        <div class="form-group">
+                                            <table class="table table-bordered table-valignM">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th colspan="2">Path</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td><a href="#">1.jpg</a></td>
+                                                        <td><button class="btn btn-danger btn-flat" title="Delete"><i class="fa fa-trash-o"></i></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success btn-flat">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // Initialize the widget when the DOM is ready
+        $(function () {
+            // Setup html5 version
+            $("#productEdit-imageUploader").pluploadQueue({
+                // General settings
+                runtimes: 'html5,flash,silverlight,html4',
+                url: "/examples/upload",
+
+                chunk_size: '1mb',
+                rename: true,
+                dragdrop: true,
+
+                filters: {
+                    // Maximum file size
+                    max_file_size: '10mb',
+                    // Specify what files to browse for
+                    mime_types: [
+                        { title: "Image files", extensions: "jpg,gif,png" },
+                        { title: "Zip files", extensions: "zip" }
+                    ]
+                },
+
+                // Resize images on clientside if we can
+                resize: {
+                    width: 200,
+                    height: 200,
+                    quality: 90,
+                    crop: true // crop to exact dimensions
+                },
+
+
+                // Flash settings
+                flash_swf_url: '/plupload/js/Moxie.swf',
+
+                // Silverlight settings
+                silverlight_xap_url: '/plupload/js/Moxie.xap'
+            });
+            $("#exampleModal-imageUploader").pluploadQueue({
+                // General settings
+                runtimes: 'html5,flash,silverlight,html4',
+                url: "/examples/upload",
+
+                chunk_size: '1mb',
+                rename: true,
+                dragdrop: true,
+
+                filters: {
+                    // Maximum file size
+                    max_file_size: '10mb',
+                    // Specify what files to browse for
+                    mime_types: [
+                        { title: "Image files", extensions: "jpg,gif,png" },
+                        { title: "Zip files", extensions: "zip" }
+                    ]
+                },
+
+                // Resize images on clientside if we can
+                resize: {
+                    width: 200,
+                    height: 200,
+                    quality: 90,
+                    crop: true // crop to exact dimensions
+                },
+
+
+                // Flash settings
+                flash_swf_url: '/plupload/js/Moxie.swf',
+
+                // Silverlight settings
+                silverlight_xap_url: '/plupload/js/Moxie.xap'
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿@model List<BestBuy.ViewModels.HomeAppliances.AirConditionerViewModel>
+
+
+
+<h1 style="font-size:50px; text-align:center ">)</h1>
+<br />
+
+
+<style>
+    span {
+        display: block;
+        padding-left: 50px;
+    }
+
+    img {
+        float: left;
+        margin: 0 50px 10px 20px;
+        width: 300px;
+        height: 130px;
+    }
+
+    clear {
+        clear: left;
+    }
+</style>
+<section>
+
+    @foreach (var airConditioner in Model)
+    {
+        <div>
+            <p style="font-size:15px; font-family:'Times New Roman', Times, serif; font-weight: bolder">
+                @switch(airConditioner.Id)
+                {
+                    case 1:
+                        <img src="~/img/homeAppliances/airConditioner/air-1.jpg">;
+                        break;
+                    case 2:
+                        <img src="~/img/homeAppliances/airConditioner/air-2.jpg">;
+                        break;
+                    case 3:
+                        <img src="~/img/homeAppliances/airConditioner/air-3.jpg">;
+                        break;
+                    case 4:
+                        <img src="~/img/homeAppliances/airConditioner/air-4.jpg">;
+                        break;
+                }
+
+
+                @if (airConditioner.Company != null)
+                {<span>Company : <i style="font:italic; font:bolder">@airConditioner.Company</i> </span>}
+
+
+                @if (airConditioner.Name != null)
+                {<span>Name : <i style="font:italic; font:bolder">@airConditioner.Name</i> </span>}
+
+                @if (airConditioner.Price != null)
+                {<span>Price : <i style="font:italic; font:bolder">  @airConditioner AMD </i></span>}
+
+                @if (airConditioner.AirFlow != null)
+                {<span>AirFlow : <i style="font:italic; font:bolder">  @airConditioner.AirFlow cu.m/h</i> </span> }
+
+                @if (airConditioner.WorkingSpace != null)
+                {<span>WorkingSpace : <i style="font:italic; font:bolder"> @airConditioner.WorkingSpace </i> </span>}
+
+                @if (airConditioner.WorkingTemperature != null)
+                {<span>WorkingTemperature : <i style="font:italic; font:bolder"> @airConditioner.WorkingTemperature </i> </span> }
+
+            </p>
+            <br />
+        </div>
+    }
+</section>

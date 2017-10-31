@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Best Buy - Computers";
+}
+
+
+
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        div.gallery {
+            border: 1px solid #ccc;
+        }
+
+            div.gallery:hover {
+                border: 1px solid #777;
+            }
+
+            div.gallery img {
+                width: 100%;
+                height: auto;
+            }
+
+        div.desc {
+            padding: 15px;
+            text-align: center;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .responsive {
+            padding: 0 6px;
+            float: left;
+            width: 24.99999%;
+        }
+
+        @@media only screen and (max-width: 700px) {
+            .responsive {
+                width: 49.99999%;
+                margin: 6px 0;
+            }
+        }
+
+        @@media only screen and (max-width: 500px) {
+            .responsive {
+                width: 100%;
+            }
+        }
+
+        .clearfix:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="font-size:35px;font-weight:bolder;text-align:center; background-color:aquamarine"> We have three types of PC </h1>
+        <div class="responsive">
+            <div class="gallery">
+                <a target="_blank" href="@Url.Action("GetPCbyType","Computer",new { typeID = 1})">
+                    <img src="~/img/users/user-8.jpg" alt="Desktop" width="600" height="400">
+                </a>
+                <div class="desc">
+                    <a href="@Url.Action("GetPCbyType","Computer",new { typeID = 1})">
+                        <h1 style="color:black;font-weight:bolder"> Desktop </h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="responsive">
+            <div class="gallery">
+                <a target="_blank" href="@Url.Action("GetPCbyType","Computer",new { typeID = 2})">
+                    <img src="~/img/users/user-1.jpg" alt="Laptop" width="600" height="400">
+                </a>
+                <div class="desc">
+                    <a href="@Url.Action("GetPCbyType","Computer",new { typeID = 2})">
+                        <h1 style="color:black;font-weight:bolder"> Laptop </h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="responsive">
+            <div class="gallery">
+                <a target="_blank" href="@Url.Action("GetPCbyType","Computer",new { typeID = 3})">
+                    <img src="~/img/users/user-5.jpg" alt="All in one" width="600" height="400">
+                </a>
+                <div class="desc">
+                    <a href="@Url.Action("GetPCbyType","Computer",new { typeID = 3})">
+                        <h1 style="color:black;font-weight:bolder"> All in One </h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+    <div class="clearfix"></div>
+
+</body>
